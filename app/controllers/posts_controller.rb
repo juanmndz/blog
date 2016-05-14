@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user,       only: :destroy
   def index
     @posts = Post.all.order('created_at DESC')
   end
